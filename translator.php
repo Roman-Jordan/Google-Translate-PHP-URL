@@ -1,67 +1,6 @@
 
 <?php 
-
-class Translate{
-  
-  function __construct($languages){
-    foreach($languages as $key => $value){
-      $this->$key = $value;
-    }
-    $this->path = $this->directory. '/supported-languages.json';
-  }
-
-  function supportedLanguages(){
-    //Defaults
-    $class = isset($this->class) ? 'class="'.$this->class.'"': false;
-    $id = isset($this->id) ? 'id="'.$this->id.'"': false;
-    $dir = isset($this->dir) ? $this->dir : 'languages';
-    $tag = isset($this->tag) ? $this->tag : 'button';
-    $href = isset($this->href) ? $this->href : false; 
-    
-    if(file_exists($this->path)){
-        $this->escapeHTML();
-    }else{
-        $this->toNative();
-    }  
-  }
-
-  function toNative(){
-    $pull = file_get_contents("https://translation.googleapis.com/language/translate/v2/languages?target=en&key=".$this->apiKey);
-    $languageList = json_decode($pull);
-    
-    foreach($languageList->data->languages as $language){
-      
-      $languageToNative = @file_get_contents('https://translation.googleapis.com/language/translate/v2/?target='.$language->language.'&q='.$language->name.'&key='.$this->apiKey);
-      if($languageToNative === false){
-        $language->name = NULL;
-      }else{
-        $nativeLang = json_decode($languageToNative);
-        foreach($nativeLang->data->translations as $lang){
-          $language->name = $lang->translatedText;
-        }
-      }
-    }
-    
-    $file = fopen($this->path, "w") or die("Unable to open file!");
-    fwrite($file, json_encode($languageList));
-    fclose($file);
-    
-    $this->escapeHTML();
-  }
-
-  function escapeHTML(){
-    
-    $pull = file_get_contents(__DIR__.'/'.$this->path);
-    $decoded = json_decode($pull);
-    $html = "";
-    foreach($decoded->data->languages as $language){
-      if($language->name !== NULL){
-        $html .= '<'.$this->tag.' '.$this->class.' '.$this->id.' value="'.$language->language.'">'.$language->name.'</'.$this->tag.'>';
-      }
-    }
-    ECHO $html;
-  }
-}
+require_once('translator_class_library/translate_init.php');
 
 $apiKey ="AIzaSyAKhbhxW7u3u7q4QkiVDGQk3ZByDtUkbhg";
 
@@ -69,9 +8,9 @@ $languages = array(
     'apiKey'    => $apiKey,
     'directory' => 'languages',
     'tag'       => 'button',
-    'class'     => 'tx btn-link',
+    'class'     => 'btn-link',
     'update'    => 'update',
-    'id'        => 'Hello'
+    //'id'        => 'Hello'
 );
 
 $translate = new Translate($languages);
@@ -84,8 +23,6 @@ $translate = new Translate($languages);
         <meta charset="utf-8">
         <title>Translation Catching</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-    <![endif]-->
     </head>
     <body data-spy="scroll" data-target="nav">
         <section id="header-3" class="soft-scroll header-3" wp-cz-section="blocks_header_3" wp-cz-section-title="Header 3">
@@ -107,7 +44,7 @@ $translate = new Translate($languages);
             </div>  
 
             <div class="modal-body" id="languages">
-              <?php echo $translate->supportedLanguages($languages);?>
+              <?php echo $translate->supportedLanguages();?>
             </div>
 
           </section>
