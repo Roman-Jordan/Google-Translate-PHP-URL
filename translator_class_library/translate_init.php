@@ -24,7 +24,6 @@ class Translate{
     foreach($languageList->data->languages as $language){
       
       $languageToNative = @file_get_contents('https://translation.googleapis.com/language/translate/v2/?target='.$language->language.'&q='.$language->name.'&key='.$this->apiKey);
-      
       if($languageToNative === false){
         $language->name = NULL;
       }else{
@@ -42,7 +41,7 @@ class Translate{
     $this->escapeHTML();
   }
 
-  function escapeHTML(){
+  public function escapeHTML(){
 
     //Defaults
     $class = isset($this->class) ? 'class="'.$this->class.'"': false;

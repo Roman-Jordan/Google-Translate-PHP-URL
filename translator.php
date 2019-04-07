@@ -14,24 +14,23 @@ $languages = array(
 );
 
 $translate = new Translate($languages);
+
 ?>
  
 
- <!DOCTYPE html>
-<html lang="en" style="height:100%;" wp-site wp-site-is-master-page>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Translation Catching</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body data-spy="scroll" data-target="nav">
-        <section id="header-3" class="soft-scroll header-3" wp-cz-section="blocks_header_3" wp-cz-section-title="Header 3">
-            <!-- /.nav -->
-                        <!-- added translator below -->
-            <div class="col-md-12">
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#translate-modal">Translate</button>
+    <body>
+        <section>
+            <div>
+                    <button>Translate</button>
             </div>
-            <div class="col-md-12">
+            <div>
                 <h1 class="tx">I am some text to be translated</h1>
                 <p class="tx">I am text to be translated in independent tags 1.</p>
                 <p class="tx">I am text to be translated in independent tags 2.</p>
