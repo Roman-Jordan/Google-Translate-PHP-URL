@@ -84,8 +84,6 @@ $translate = new Translate($languages);
         <meta charset="utf-8">
         <title>Translation Catching</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-    <![endif]-->
     </head>
     <body data-spy="scroll" data-target="nav">
         <section id="header-3" class="soft-scroll header-3" wp-cz-section="blocks_header_3" wp-cz-section-title="Header 3">
