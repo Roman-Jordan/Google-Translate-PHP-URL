@@ -4,9 +4,11 @@ require_once('translator_class_library/translate_init.php');
 
 $apiKey ="AIzaSyAKhbhxW7u3u7q4QkiVDGQk3ZByDtUkbhg";
 
+//Set 'directory' if you did not install on server root. E.G public_html/root/someFolder/thisInstall
+
 $languages = array(
     'apiKey'    => $apiKey,
-    'directory' => 'languages',
+    'directory' => 'git/Google-Translate-PHP-URL',
     'tag'       => 'button',
     'class'     => 'btn-link',
     'update'    => 'update',

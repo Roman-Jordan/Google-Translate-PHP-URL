@@ -5,11 +5,10 @@ class Translate{
     foreach($languages as $key => $value){
       $this->$key = $value;
     }
-    $this->path = $this->directory. '/supported-languages.json';
+    $this->path = $_SERVER['DOCUMENT_ROOT'].'/'.$this->directory.'/translator_class_library/languages/supported-languages.json';
   }
   
   function supportedLanguages(){
-      
     if(file_exists($this->path)){
         $this->escapeHTML();
     }else{

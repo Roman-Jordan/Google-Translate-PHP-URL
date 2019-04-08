@@ -1,0 +1,2 @@
+[08-Apr-2019 03:36:49 UTC] PHP Warning:  fopen(/home/thewebbranch/public_htmlgit/Google-Translate-PHP-URL//translator_class_library/languages/supported-languages.json): failed to open stream: No such file or directory in /home/thewebbranch/public_html/git/Google-Translate-PHP-URL/translator_class_library/translate_init.php on line 36
+[08-Apr-2019 03:38:03 UTC] PHP Parse error:  syntax error, unexpected '/' in /home/thewebbranch/public_html/git/Google-Translate-PHP-URL/translator_class_library/translate_init.php on line 8
